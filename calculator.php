@@ -6,21 +6,22 @@
     </head>
     <body>
         <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="get">
-			First Number: <input type="number" name="num1"><br>
+			First Number: <input type="text" name="num1"><br>
 			<br>
         	<input type="radio" name="sign" value="Add"> +<br>
             <input type="radio" name="sign" value="Subtract"> -<br>
 			<input type="radio" name="sign" value="Multiply"> *<br>
             <input type="radio" name="sign" value="Divide"> /<br>
 			<br>
-			Second Number: <input type="number" name="num2"> <br>
+			Second Number: <input type="text" name="num2"> <br>
 			<br>
         	<input type="submit" value="Calculate"> <br>
 			<br>
 			<br>
 			</form>
 			<?php
-				if(isset($_GET['num1']) && isset($_GET['num2']) && isset($_GET['sign'])){
+				if(isset($_GET['num1']) && isset($_GET['num2']) && isset($_GET['sign']) &&
+				   is_numeric($_GET['num1']) && is_numeric($_GET['num1'])){
 					$num1 = $_GET['num1'];
 					$num2 = $_GET['num2'];
 					$sign = $_GET['sign'];
@@ -38,10 +39,10 @@
 							$result = $num1/$num2;
 						}
 					}
+					echo "Result: ";
 				} else {
-					$result = "Error! Please submit all fields";
+					$result = "Please enter valid number and operation <br> Fractions are not allowed. Please use decimals.";
 				}
-				echo "Result: ";
 				echo $result;
 		?>	
     </body>
